@@ -21,7 +21,7 @@
 <body>
 
 <h1>TabVibe Privacy Policy</h1>
-<p class="updated">Last updated: July 2026</p>
+<p class="updated">Last updated: July 17, 2026</p>
 
 <p>TabVibe is a Chrome extension that replaces your new tab page with a customizable background, search box, top sites, sticky notes, and optional news headlines.</p>
 
@@ -36,7 +36,7 @@
 <p>All of TabVibe's settings and sticky notes are stored using Chrome's built-in <code>chrome.storage</code> API, directly in your own browser:</p>
 <ul>
   <li><strong>Settings</strong> (background type, colors, filters, search engine, layout preferences, chosen news provider) are stored via <code>chrome.storage.sync</code>, which Chrome syncs across your own signed-in devices through your Google account. This sync is handled entirely by Google/Chrome — TabVibe never sees or transmits this data itself.</li>
-  <li><strong>Sticky notes and cached photo/news data</strong> are stored via <code>chrome.storage.local</code>, kept only on your local device.</li>
+  <li><strong>Sticky notes, cached photo/news data, cached weather data, and cached radio station lists</strong> are stored via <code>chrome.storage.local</code>, kept only on your local device.</li>
 </ul>
 <p>None of this data is accessible to the developer of TabVibe.</p>
 
@@ -45,10 +45,13 @@
 <ul>
   <li><strong>Picsum Photos</strong> (<code>picsum.photos</code>) — to fetch a random background photo and its photographer attribution.</li>
   <li><strong>Your selected news source</strong> (e.g. BBC, The Guardian, TechCrunch, etc.) — only when you open the News panel or the extension refreshes cached headlines, and only to the single provider you have selected.</li>
-  <li><strong>Search engine and news provider websites' favicon files</strong>, and Google's public favicon-lookup service as a fallback — solely to display each provider's icon.</li>
+  <li><strong>Search-suggestion autocomplete</strong> — if you type in the search box, TabVibe sends your in-progress query, as you type, to the suggestion endpoint of whichever search engine you have selected (Google, Bing, DuckDuckGo, Yahoo, Baidu, Ecosia, Brave, or Startpage) so it can show live autocomplete suggestions. This happens only for the one engine you've chosen, and only while you're actively typing in the search box.</li>
+  <li><strong>Weather</strong> (<code>open-meteo.com</code>) — if you set a weather location, TabVibe sends the city name you entered to Open-Meteo's geocoding service to resolve it to coordinates, then requests forecast data for those coordinates. This only happens if you've configured a weather location, and the result is cached locally to avoid repeated requests.</li>
+  <li><strong>Radio</strong> (<code>radio-browser.info</code> mirrors, and direct station streams e.g. <code>somafm.com</code>) — if you use the radio widget, TabVibe looks up available countries and stations from the radio-browser.info network, and connects directly to the audio stream URL of whichever station you choose to play.</li>
+  <li><strong>Search engine and news provider websites' favicon files</strong>, and Google's public favicon-lookup service as a fallback — solely to display each provider's icon (including for your saved quick links and top sites).</li>
   <li><strong>Chrome's own internal favicon cache</strong> — to display icons for your most-visited sites.</li>
 </ul>
-<p>These are standard HTTP requests; as with any website you visit, the receiving server can see your IP address and standard request headers. TabVibe does not add any additional tracking, identifiers, or analytics to these requests, and does not log or store the responses anywhere beyond your own browser's local cache.</p>
+<p>These are standard HTTP requests; as with any website or streaming service you connect to, the receiving server can see your IP address, standard request headers, and — in the case of search suggestions, weather, and radio — the specific query, city, or station you requested. TabVibe does not add any additional tracking, identifiers, or analytics to these requests, and does not log or store the responses anywhere beyond your own browser's local cache.</p>
 
 <h2>Permissions TabVibe requests</h2>
 <ul>
@@ -56,7 +59,7 @@
   <li><code>topSites</code> — to show your most-visited sites as shortcuts on the new tab page.</li>
   <li><code>alarms</code> — to schedule automatic photo rotation at the interval you choose.</li>
   <li><code>favicon</code> — to display real site icons for your top sites using Chrome's local favicon cache.</li>
-  <li>Host permissions for Picsum Photos and the specific news provider domains listed above — solely to fetch photos and headlines as described.</li>
+  <li>Host permissions for Picsum Photos, the specific news provider domains, search-suggestion endpoints, Open-Meteo, and radio-browser.info mirrors listed above — solely to fetch photos, headlines, autocomplete suggestions, weather, and radio station data as described.</li>
 </ul>
 
 <h2>Changes to this policy</h2>
